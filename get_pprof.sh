@@ -1,8 +1,11 @@
 #!/bin/bash
 
-SERVER="localhost"
-PORT=4443
-SLEEP_SECOND=20
+SERVER=${1:-"localhost"}
+PORT=${2:-4443}
+
+SLEEP_SECOND=3
+
+echo "target server/port: $SERVER:$PORT"
 
 while true;
 do
@@ -10,8 +13,8 @@ do
     echo "connection: $(lsof -i TCP:$PORT | wc -l)"
 
     # profile
-    go tool pprof -text -inuse_space http://$SERVER:6060/debug/pprof/heap
-    go tool pprof -tree -inuse_space http://$SERVER:6060/debug/pprof/heap
+    go tool pprof -top -inuse_space http://$SERVER:6060/debug/pprof/heap
+    #go tool pprof -tree -inuse_space http://$SERVER:6060/debug/pprof/heap
 
     echo "sleeping $SLEEP_SECOND seconds ..."
     sleep $SLEEP_SECOND

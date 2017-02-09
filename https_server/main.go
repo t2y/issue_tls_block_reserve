@@ -6,6 +6,8 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 	"os"
+	"runtime/debug"
+	"time"
 )
 
 var MemProfileRate int = 1
@@ -24,6 +26,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 func main() {
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
+
+	go func() {
+		for {
+			debug.FreeOSMemory()
+			log.Println("called FreeOSMemory()")
+			time.Sleep(3 * time.Second)
+		}
 	}()
 
 	http.HandleFunc("/", index)
