@@ -6,7 +6,7 @@ An issue related to crypto/tls.(\*block).reserve
 
 The memory usage of crypto/tls.(\*block).reserve is increased linearly when https clients make a connection to a https server, then they never close its connection even if they wouldn't send/read data. But this is not a bug since the https server doesn't know whether https clients are live or not.
 
-## Experience
+## Solution
 
 Use Server.IdleTimeout in go 1.8.
 
@@ -31,7 +31,7 @@ Start up https server.
 
 This https server calls `debug.FreeOSMemory()` every 3 seconds, then outputs.
 
-### terminal 2
+### Terminal 2
 
 Start up https client without closing its connection. These clients sleeps 24 hours not to close the connection after requesting to the https server.
 
@@ -49,7 +49,7 @@ Stop https clients when you would confirmed.
     $ bash stop_clients.sh 
     all client_main processes are killed
 
-### terminal 3
+### Terminal 3
 
 After the https server/clients started, you can confirm server status to get pprof result every 3 seconds. `crypto/tls.(*block).reserve` size increases with the increasing https client connections.
 
