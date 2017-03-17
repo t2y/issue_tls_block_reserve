@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SERVER=${1:-"localhost"}
-PORT=${2:-4443}
+PORT=${2:-44443}
 
 SLEEP_SECOND=3
 

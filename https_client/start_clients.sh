@@ -3,7 +3,7 @@
 CLIENT_NUM=${1:-10}
 SLEEP_SECOND=${2:-1}
 SERVER=${3:-"localhost"}
-PORT=${4:-4443}
+PORT=${4:-44443}
 
 echo "start client to $CLIENT_NUM every $SLEEP_SECOND seconds"
 echo "target server/port: $SERVER:$PORT"

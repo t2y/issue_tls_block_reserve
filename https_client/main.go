@@ -10,7 +10,7 @@ import (
 )
 
 var server = flag.String("server", "localhost", "")
-var port = flag.String("port", "4443", "")
+var port = flag.String("port", "44443", "")
 var insecure = flag.Bool("insecure", false, "")
 
 func main() {
