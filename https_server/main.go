@@ -6,11 +6,10 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 	"os"
+	"runtime"
 	"runtime/debug"
 	"time"
 )
-
-var MemProfileRate int = 1
 
 func index(w http.ResponseWriter, r *http.Request) {
 	file, err := os.Open("./index.html")
@@ -24,6 +23,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	runtime.MemProfileRate = 1
+
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
