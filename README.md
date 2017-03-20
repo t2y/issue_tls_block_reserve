@@ -25,8 +25,8 @@ Start up https server.
 
     $ cd https_server
     $ ./server_main 
-    2017/03/15 15:47:36 called FreeOSMemory()
-    2017/03/15 15:47:39 called FreeOSMemory()
+    2017/03/21 06:59:50 called FreeOSMemory()
+    2017/03/21 06:59:53 called FreeOSMemory()
     ...
 
 This https server calls `debug.FreeOSMemory()` every 3 seconds, then outputs.
@@ -42,6 +42,13 @@ Start up https client without closing its connection. These clients sleeps 24 ho
     client 1 is running
     client 2 is running
     client 3 is running
+    ...
+
+You can confirm multiple requests are accepted on https server when you see Terminal 1.
+
+    2017/03/21 07:00:08 called FreeOSMemory()
+    2017/03/21 07:00:08 &{GET / HTTP/1.1 1 1 map[User-Agent:[Go-http-client/1.1] Accept-Encoding:[gzip]] 0xa31750 0 [] false localhost:44443 map[] map[] <nil> map[] 127.0.0.1:34184 / 0xc820287c30 <nil>}
+    2017/03/21 07:00:08 &{GET / HTTP/1.1 1 1 map[User-Agent:[Go-http-client/1.1] Accept-Encoding:[gzip]] 0xa31750 0 [] false localhost:44443 map[] map[] <nil> map[] 127.0.0.1:34186 / 0xc8202d0000 <nil>}
     ...
 
 Stop https clients when you would confirmed.
